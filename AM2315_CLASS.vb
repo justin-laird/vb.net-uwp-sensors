@@ -38,6 +38,8 @@ Public Class AM2315_CLASS
         Dim HUMIDITY As Decimal = Math.Round(((READ_BUFFER(2) * 256) + READ_BUFFER(3)) / 10, 2)
         Dim TEMP As Decimal = Math.Round((((READ_BUFFER(4) And &H7F) * 256) + READ_BUFFER(5)) / 10, 2)
 
+        If READ_BUFFER(4) >> 7 > 0 Then TEMP = -TEMP
+
         PROBE_DATA.HUMIDITY = HUMIDITY
         PROBE_DATA.TEMPERATURE = TEMP
         PROBE_DATA.TIMESTAMP = Date.Now
