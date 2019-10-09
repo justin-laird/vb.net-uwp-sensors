@@ -10,7 +10,7 @@ Current Sensors include:
   * SI7021 - I2C Temperature & Humidity Sensor
   * VL53L0X - Time of Flight Distance Sensor
 
-I've referenced many sources in python, C#, and Java in an effort to get these working. They all work for me at the time of this writing, although some(all?) of them could probably be cleaned up and improved. 
+I've referenced many sources in python, C#, and Java in an effort to get these working. All the classes work for me at the time of this writing, although some(all?) of them could be cleaned up and improved but this is enough to get most people started. I'm not sure I'll keep these updated unless there is a noticable interest in them.
 
 Sensor notes:
 
