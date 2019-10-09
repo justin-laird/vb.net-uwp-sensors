@@ -1,8 +1,8 @@
 ﻿Imports Windows.Devices.I2C
 
 Public Structure AM2315_Data
-    Public HUMIDITY As Integer
-    Public TEMPERATURE As Integer
+    Public HUMIDITY As Decimal
+    Public TEMPERATURE As Decimal
     Public TIMESTAMP As Date
 End Structure
 
@@ -35,11 +35,11 @@ Public Class AM2315_CLASS
         Threading.Thread.Sleep(10)
         AM2315_SENSOR.Read(READ_BUFFER)
 
-        Dim HUMIDITY As Integer = ((READ_BUFFER(2) * 256) + READ_BUFFER(3)) / 10
-        Dim TEMP As Integer = (((READ_BUFFER(4) And &H7F) * 256) + READ_BUFFER(5)) / 10
+        Dim HUMIDITY As Decimal = Math.Round(((READ_BUFFER(2) * 256) + READ_BUFFER(3)) / 10, 2)
+        Dim TEMP As Decimal = Math.Round((((READ_BUFFER(4) And &H7F) * 256) + READ_BUFFER(5)) / 10, 2)
 
         PROBE_DATA.HUMIDITY = HUMIDITY
-        PROBE_DATA.TEMPERATURE = TEMP 'BitConverter.ToInt16(READ_BUFFER, 4)
+        PROBE_DATA.TEMPERATURE = TEMP
         PROBE_DATA.TIMESTAMP = Date.Now
 
         Return PROBE_DATA
