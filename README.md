@@ -43,12 +43,12 @@ Sensor notes:
     
     Then initialize your sensor:
     ```vb
-    Await Task.WhenAll(VL53L0X_DEVICE.InitializeAsync(False, 0))
+    Await Task.WhenAll(VL53L0X_DEVICE.INITIALIZE_ASYNC(False, 0))
     ```
     
     Finally get your data:
     ```vb
-    Dim VL53L0X_DATA As VL53L0X_CLASS.VL53L0XData = VL53L0X_DEVICE.Read()
+    Dim VL53L0X_DATA As VL53L0X_CLASS.VL53L0XData = VL53L0X_DEVICE.READ()
      ```
      
      
