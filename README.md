@@ -1,5 +1,4 @@
-# vb.net-uwp-sensors
-VB.Net Windows 10 IoT Core UWP Sensors from Adafruit - Tested with a Raspberry Pi 3
+# VB.Net Windows 10 IoT Core UWP Sensors from Adafruit - Tested with a Raspberry Pi 3
 
 A collection of VB.Net classes that I've written for several sensors since there is a general lack of VB.Net examples for Windows 10 IoT Core and UWP.
 
