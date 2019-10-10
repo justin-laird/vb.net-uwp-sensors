@@ -41,11 +41,11 @@ Public Class SI7021_CLASS
         Threading.Thread.Sleep(50)
 
         SI7021_SENSOR.WriteRead(New Byte() {MEASURE_RH_HOLD_MASTER}, READ_BUFFER)
-        RAW_NUM = BitConverter.ToInt16(READ_BUFFER, 0)
+        RAW_NUM = BitConverter.ToInt16(New Byte() {READ_BUFFER(1), READ_BUFFER(0)}, 0)
         PROBE_DATA.HUMIDITY = ((125 * RAW_NUM) / 65536) - 6
 
         SI7021_SENSOR.WriteRead(New Byte() {READ_TEMP_FROM_PREV_RH}, READ_BUFFER)
-        RAW_NUM = BitConverter.ToInt16(READ_BUFFER, 0)
+        RAW_NUM = BitConverter.ToInt16(New Byte() {READ_BUFFER(1), READ_BUFFER(0)}, 0)
         PROBE_DATA.TEMPERATURE = ((175.72 * RAW_NUM) / 65536) - 46.85
 
         PROBE_DATA.TIMESTAMP = Date.Now
