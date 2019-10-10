@@ -192,27 +192,23 @@ Public Class SI1145_CLASS
 
     Public Function READ_PROBE_DATA() As SI1145_Data
         Dim PROBE_DATA As New SI1145_Data()
-        Dim READ_BUFFER1 As Byte() = New Byte(1) {}
-        Dim READ_BUFFER2 As Byte() = New Byte(1) {}
-        Dim READ_BUFFER3 As Byte() = New Byte(1) {}
-        Dim READ_BUFFER4 As Byte() = New Byte(1) {}
-        'Dim RAW_NUM As Integer
+        Dim READ_BUFFER As Byte() = New Byte(1) {}
 
         'GET VISIBLE LIGHT INTEGER
-        SI1145_SENSOR.WriteRead(New Byte() {SI1145_REG_ALSVISDATA0}, READ_BUFFER1)
-        PROBE_DATA.VISABLE_LIGHT = BitConverter.ToInt16(READ_BUFFER1, 0)
+        SI1145_SENSOR.WriteRead(New Byte() {SI1145_REG_ALSVISDATA0}, READ_BUFFER)
+        PROBE_DATA.VISABLE_LIGHT = BitConverter.ToInt16(New Byte() {READ_BUFFER(1), READ_BUFFER(0)}, 0)
 
         'GET UV LIGHT INTEGER
-        SI1145_SENSOR.WriteRead(New Byte() {SI1145_REG_UVINDEX0}, READ_BUFFER2)
-        PROBE_DATA.UV_LIGHT = BitConverter.ToInt16(READ_BUFFER2, 0)
+        SI1145_SENSOR.WriteRead(New Byte() {SI1145_REG_UVINDEX0}, READ_BUFFER)
+        PROBE_DATA.UV_LIGHT = BitConverter.ToInt16(New Byte() {READ_BUFFER(1), READ_BUFFER(0)}, 0)
 
         'GET IR LIGHT INTEGER
-        SI1145_SENSOR.WriteRead(New Byte() {SI1145_REG_ALSIRDATA0}, READ_BUFFER3)
-        PROBE_DATA.IR_LIGHT = BitConverter.ToInt16(READ_BUFFER3, 0)
+        SI1145_SENSOR.WriteRead(New Byte() {SI1145_REG_ALSIRDATA0}, READ_BUFFER)
+        PROBE_DATA.IR_LIGHT = BitConverter.ToInt16(New Byte() {READ_BUFFER(1), READ_BUFFER(0)}, 0)
 
         'GET PROXIMITY DISTANCE INTEGER
-        SI1145_SENSOR.WriteRead(New Byte() {SI1145_REG_PS1DATA0}, READ_BUFFER4)
-        PROBE_DATA.PROXIMITY = BitConverter.ToInt16(READ_BUFFER4, 0)
+        SI1145_SENSOR.WriteRead(New Byte() {SI1145_REG_PS1DATA0}, READ_BUFFER)
+        PROBE_DATA.PROXIMITY = BitConverter.ToInt16(New Byte() {READ_BUFFER(1), READ_BUFFER(0)}, 0)
 
         Return PROBE_DATA
 
