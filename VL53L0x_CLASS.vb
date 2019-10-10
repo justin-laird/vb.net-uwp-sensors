@@ -41,10 +41,11 @@ Public Class VL53L0X_CLASS
         VL530L0X_SENSOR.WriteRead(New Byte() {&H14}, READ_BUFFER)
 
         Dim SENSOR_DATA As VL53L0XData = New VL53L0XData()
+
         With SENSOR_DATA
-            .DISTANCE = BitConverter.ToInt16(READ_BUFFER, 10)
-            .AMBIENT = BitConverter.ToInt16(READ_BUFFER, 6)
-            .SIGNAL = BitConverter.ToInt16(READ_BUFFER, 8)
+            .DISTANCE = BitConverter.ToInt16(New Byte() {READ_BUFFER(11), READ_BUFFER(10)}, 0)
+            .AMBIENT = BitConverter.ToInt16(New Byte() {READ_BUFFER(7), READ_BUFFER(6)}, 0)
+            .SIGNAL = BitConverter.ToInt16(New Byte() {READ_BUFFER(9), READ_BUFFER(8)}, 0)
         End With
 
         Return SENSOR_DATA
